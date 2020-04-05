@@ -1,0 +1,38 @@
+{% set name = "pycdf" %}
+{% set version = "0.1.4" %}
+{% set sha256 = "ef29025b9ac04b02b610803fb6abc84307ae34137742fd6f0c738f9315f0296c" %}
+
+
+package:
+   name: {{ name }} 
+   version: {{ version }} 
+   
+source:
+   fn:  cdf-dist-cdf.tar.gz
+   url: https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf37_1/cdf-dist-cdf.tar.gz
+   sha256: {{ sha256 }}
+   
+   
+build:
+   # This is the zeroth build
+   number: 0
+   
+requirements:
+   build:
+      - {{ compiler('c') }}
+            
+   host:
+      - python
+      
+   run:
+      - python
+      
+test:
+   imports:
+      - pycdf
+
+about:
+   home: https://github.com/spacepy/spacepy
+   license: Custom
+   license_file: bindings/python/LICENSE
+   summary: An efficient space physics data client for python

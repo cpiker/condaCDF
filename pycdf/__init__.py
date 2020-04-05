@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-das2 developers note:
+das developers note:
 
   This a is modification of the original SpacePy pycdf package.  All
   refereneces to the greater spacepy package have been removed to create
