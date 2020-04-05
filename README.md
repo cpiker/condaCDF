@@ -22,7 +22,7 @@ Install conda build if needed
 
 In the working directory of this repo run the build command
 ```bash
-(base) $ conda-build recipe
+(base) $ conda-build ./recipe
 ```
 
 Upload the build output to your favorite repository.  Below I'm using 

@@ -20,6 +20,8 @@ build:
 requirements:
    build:
       - {{ compiler('c') }}
+      - zlib
+      - python
             
    host:
       - python
@@ -32,7 +34,7 @@ test:
       - pycdf
 
 about:
-   home: https://github.com/spacepy/spacepy
-   license: Custom
-   license_file: bindings/python/LICENSE
-   summary: An efficient space physics data client for python
+   home: https://github.com/das-developers/condaCDF
+   license: Custom/Combined
+   license_file: LICENSE
+   summary: pycdf and lidcdf.so as a stand alone package
