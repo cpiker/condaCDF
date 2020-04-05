@@ -11,7 +11,8 @@ source:
    fn:  cdf-dist-cdf.tar.gz
    url: https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf37_1/cdf-dist-cdf.tar.gz
    sha256: {{ sha256 }}
-   
+   patches:
+      - 0001_add_pycdf.patch
    
 build:
    # This is the zeroth build
@@ -36,5 +37,5 @@ test:
 about:
    home: https://github.com/das-developers/condaCDF
    license: Custom/Combined
-   license_file: LICENSE
-   summary: pycdf and lidcdf.so as a stand alone package
+   license_file: ../LICENSE
+   summary: pycdf and libcdf.so as a stand alone package

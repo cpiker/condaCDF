@@ -1,6 +1,6 @@
-diff -ruN cdf37_1-dist/pycdf/const.py cdf_dist_patched/pycdf/const.py
---- cdf37_1-dist/pycdf/const.py	1969-12-31 18:00:00.000000000 -0600
-+++ cdf_dist_patched/pycdf/const.py	2020-04-05 16:49:24.008293750 -0500
+diff -ruN ./pycdf/const.py ./pycdf/const.py
+--- ./pycdf/const.py	1969-12-31 18:00:00.000000000 -0600
++++ ./pycdf/const.py	2020-04-05 17:52:29.046883171 -0500
 @@ -0,0 +1,490 @@
 +#!/usr/bin/env python
 +# -*- coding: utf-8 -*-
@@ -492,9 +492,9 @@ diff -ruN cdf37_1-dist/pycdf/const.py cdf_dist_patched/pycdf/const.py
 +zVAR_EXTENDRECS_ = zVAR_BLOCKINGFACTOR_
 +COL_MAJOR = COLUMN_MAJOR
 +NONE_CHECKSUM = NO_CHECKSUM
-diff -ruN cdf37_1-dist/pycdf/__init__.py cdf_dist_patched/pycdf/__init__.py
---- cdf37_1-dist/pycdf/__init__.py	1969-12-31 18:00:00.000000000 -0600
-+++ cdf_dist_patched/pycdf/__init__.py	2020-04-05 16:49:24.008293750 -0500
+diff -ruN ./pycdf/__init__.py ./pycdf/__init__.py
+--- ./pycdf/__init__.py	1969-12-31 18:00:00.000000000 -0600
++++ ./pycdf/__init__.py	2020-04-05 17:52:29.046883171 -0500
 @@ -0,0 +1,5351 @@
 +#!/usr/bin/env python
 +# -*- coding: utf-8 -*-
@@ -5847,9 +5847,9 @@ diff -ruN cdf37_1-dist/pycdf/__init__.py cdf_dist_patched/pycdf/__init__.py
 +            del self[new_name]
 +        self.new(new_name, master[name],
 +                 master.type(name) if hasattr(master, 'type') else None)
-diff -ruN cdf37_1-dist/setup.py cdf_dist_patched/setup.py
---- cdf37_1-dist/setup.py	1969-12-31 18:00:00.000000000 -0600
-+++ cdf_dist_patched/setup.py	2020-04-05 16:49:24.012293736 -0500
+diff -ruN ./setup.py ./setup.py
+--- ./setup.py	1969-12-31 18:00:00.000000000 -0600
++++ ./setup.py	2020-04-05 17:52:29.046883171 -0500
 @@ -0,0 +1,25 @@
 +#!/usr/bin/env python
 +

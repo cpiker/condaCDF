@@ -57,7 +57,13 @@ cp ../../setup.py .
 cd ../
 
 # Make the patch in the recipe folder
-diff -ruN ${UNTAR_DIR}/ ${PATCH_DIR}/ > ../recipe/0001_add_pycdf.patch
+cd ${PATCH_DIR}
+diff -ruN ../${UNTAR_DIR} . > ../../recipe/0001_add_pycdf.patch.bad
+
+cd ../../recipe
+
+echo "cat 0001_add_pycdf.patch.bad | sed \"s/\.\/${UNTAR_DIR}//g\" > 0001_add_pycdf.patch"
+cat 0001_add_pycdf.patch.bad | sed "s/\.\/${UNTAR_DIR}//g" > 0001_add_pycdf.patch
 
 exit 0
 
