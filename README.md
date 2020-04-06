@@ -53,16 +53,18 @@ timeOffsets: CDF_REAL8 [4096] NRV
 For more information on using pycdf, see the SpacePy [pycdf webpage](https://spacepy.github.io/pycdf.html).
 
 ## Build
-These instructions are only for package manatainers, if you c
-Activate your conda environment
+These instructions are only for package manatainers. 
 
+First, activate your conda environment:
 ```bash
 $ source $HOME/minconda3/bin/activate  # For ex. varies by install location
 ```
 
-Install conda build if needed
+Install conda build, verify and the anaconda clients if needed
 ```bash
 (base) $ conda install conda-build
+(base) $ conda install conda-verify
+(base) $ conda install anaconda-client
 ```
 
 In the working directory of this repo run the build command
