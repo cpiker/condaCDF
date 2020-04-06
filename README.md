@@ -51,6 +51,9 @@ timeOffsets: CDF_REAL8 [4096] NRV
 ... then it works.
 
 For more information on using pycdf, see the SpacePy [pycdf webpage](https://spacepy.github.io/pycdf.html).
+If this particular dataset is of interest, then see the Van Allen Probes
+[EMFISIS instrument](https://emfisis.physics.uiowa.edu/) data site.
+
 
 ## Package Maintenance
 These instructions are only for package manatainers, though anyone can be a package maintainer, so dive in :)
