@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 
-make OS=linux ENV=gnu CURSES=no all
-echo "make install INSTALLDIR=${PREFIX}"
-make install INSTALLDIR=${PREFIX}
+sUname=$(uname)
 
-python setup.py install
+if [ "${sUname}" = "Linux" ]; then
 
+	make OS=linux ENV=gnu CURSES=no all
+	make install.lib.so INSTALLDIR=${PREFIX}
+	
+elif [ "${sUname}" = "Darwin" ]; then
+
+	make OS=linux ENV=gnu CURSES=no all
+	make install.lib.dylib INSTALLDIR=${PREFIX}
+	
+else
+	echo "Unknown OS '${sUname}'"
+	exit 7
+fi
+
+$PYTHON setup.py install

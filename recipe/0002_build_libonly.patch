@@ -1,0 +1,32 @@
+diff -ruN cdf37_1-dist/Makefile cdf_dist_patch_make/Makefile
+--- ./Makefile	2018-12-17 08:46:06.000000000 -0600
++++ ./Makefile	2020-04-05 23:07:33.121849031 -0500
+@@ -811,28 +811,6 @@
+ "RANLIB=$(RANLIB_$(OS))" \
+ "VERSION=$(VERSION)" \
+ all
+-	@cd $(TOOLSsrcDIR); $(MAKE) MAKE=$(MAKE) \
+-"CURSES=$(AND.$(CURSES).$(CURSES_$(OS)_$(ENV)))" \
+-"CCx=$(CC_$(OS)_$(ENV))" \
+-"MAKE=$(MAKE)" \
+-"COPTIONS=$(COPTIONS_$(OS)_$(ENV))" \
+-"COPTIONSld=$(COPTIONSld_$(OS)_$(ENV))" \
+-"SYSLIBS=$(SYSLIBSexe_$(OS)_$(ENV))" \
+-"CURSESLIB=$(CURSESLIB_$(OS)_$(ENV))" \
+-all
+-	@cd $(TESTSsrcDIR); $(MAKE) MAKE=$(MAKE) \
+-"FORTRAN=$(FORTRAN)" \
+-"FCx=$(FC_$(OS))" \
+-"MAKE=$(MAKE)" \
+-"CCx=$(CC_$(OS)_$(ENV))" \
+-"SHARED=$(AND.$(SHARED).$(SHARED_$(OS)))" \
+-"FOPTIONS=$(FOPTIONS_$(OS)) $(FOPTIONS_$(OS)_$(ENV))" \
+-"FOPTIONSld=$(FOPTIONSld_$(OS)) $(FOPTIONSld_$(OS)_$(ENV))" \
+-"COPTIONS=$(COPTIONS_$(OS)_$(ENV))" \
+-"COPTIONSld=$(COPTIONSld_$(OS)_$(ENV))" \
+-"SYSLIBS=$(SYSLIBSexe_$(OS)_$(ENV))" \
+-"SHAREDEXT=$(SHAREDEXT_$(OS))" \
+-all
+ 
+ #------------------------------------------------------------------------------
+ # Test distribution.

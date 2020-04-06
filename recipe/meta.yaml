@@ -13,6 +13,7 @@ source:
    sha256: {{ sha256 }}
    patches:
       - 0001_add_pycdf.patch
+      - 0002_build_libonly.patch
    
 build:
    # This is the zeroth build
@@ -21,14 +22,16 @@ build:
 requirements:
    build:
       - {{ compiler('c') }}
-      - zlib
       - python
-            
+      - numpy
+      
    host:
       - python
-      
+      - numpy
+                  
    run:
       - python
+      - numpy
       
 test:
    imports:

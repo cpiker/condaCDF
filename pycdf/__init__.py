@@ -10,6 +10,11 @@ das developers note:
   
   --cwp 2018-10-18
   
+  The libcdf.so location code has been changed to find the version installed
+  in anaconda.
+  
+  --cwp 2020-04-06
+  
 
 This package provides a Python interface to the Common Data Format (CDF)
 library used for many NASA missions, available at http://cdf.gsfc.nasa.gov/.
@@ -23,27 +28,6 @@ class. The :data:`lib` object provides access to some routines
 that affect the functionality of the library in general. The
 :mod:`~pycdf.const` module contains constants useful for accessing
 the underlying library.
-
-
-The CDF C library must be properly installed in order to use this package.
-The CDF distribution provides scripts meant to be called in a user's
-login scripts, ``definitions.B`` for bash and ``definitions.C`` for C-shell
-derivatives. (See the installation instructions which come with the CDF library.)
-These will set environment variables specifying the location
-of the library; pycdf will respect these variables if they are set. Otherwise
-it will search the standard system library path and the default installation
-locations for the CDF library.
-
-If pycdf has trouble finding the library, try setting ``CDF_LIB`` before importing
-the module, e.g. if the library is in ``CDF/lib`` in the user's home directory:
-    
->>> import os
->>> os.environ["CDF_LIB"] = "~/CDF/lib"
->>> import pycdf
-    
-If this works, make the environment setting permanent. Note that on OSX,
-using plists to set the environment may not carry over to Python terminal
-sessions; use ``.cshrc`` or ``.bashrc`` instead.
 
 Authors: Jon Niehof
 
@@ -512,50 +496,33 @@ class Library(object):
                   'linux': ['libcdf.so'],
                   }
         names = names.get(sys.platform, ['libcdf.so'])
+          
         #All existing CDF-library-like paths within a directory
         search_dir = lambda x: \
             [os.path.join(x, fname) for fname in names
              if os.path.exists(os.path.join(x, fname))]
-        #Search the environment-specified places first
-        if 'CDF_LIB' in os.environ:
-            for p in search_dir(os.environ['CDF_LIB']):
+        
+        # Only use anaconda locations...
+        
+        # Defined during builds ...
+        if 'PREFIX' in os.environ:
+            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
                 yield p
-        if 'CDF_BASE' in os.environ:
-            for p in search_dir(os.path.join(os.environ['CDF_BASE'], 'lib')):
+        
+        # defined when conda is activated ...
+        if 'CONDA_PREFIX' in os.environ:
+            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
                 yield p
+			
+        # Special subdirectory for anaconda unix packages on windows
+        if 'LIBRARY_LIB' in os.environ:
+            for p in search_dir(os.environ['LIBRARY_LIB']):
+                yield p
+                
         ctypespath = ctypes.util.find_library(
             'dllcdf.dll' if sys.platform == 'win32' else 'cdf')
         if ctypespath:
             yield ctypespath
-        #LD_LIBRARY_PATH specifies runtime library search paths
-        if 'LD_LIBRARY_PATH' in os.environ:
-            for d in os.environ['LD_LIBRARY_PATH'].split(os.pathsep):
-                for p in search_dir(d):
-                    yield p
-        #Finally, defaults places CDF gets installed uner
-        #CDF_BASE is usually a subdir of these (with "cdf" in the name)
-        #Searched in order given here!
-        cdfdists = { 'win32': ['c:\\CDF Distribution\\', 'c:\\CDF_Distribution\\'],
-                    'darwin': ['/Applications/', '/usr/local/',
-                               os.path.expanduser('~')],
-                    'linux2': ['/usr/local/', os.path.expanduser('~')],
-                    'linux': ['/usr/local/', os.path.expanduser('~')],
-                    }
-        if sys.platform in cdfdists:
-            for cdfdist in cdfdists[sys.platform]:
-                if os.path.isdir(cdfdist):
-                    cand = []
-                    for d in os.listdir(cdfdist):
-                        if d[0:3].lower() == 'cdf':
-                            #checking src in case BUILT but not INSTALLED
-                            for subdir in ['lib', os.path.join('src', 'lib')]:
-                                libdir = os.path.join(cdfdist, d, subdir)
-                                if os.path.isdir(libdir):
-                                    cand.append(libdir)
-                    #Sort reverse, so new versions are first FOR THIS cdfdist
-                    for d in sorted(cand)[::-1]:
-                        for p in search_dir(d):
-                            yield p
 
     def check_status(self, status, ignore=()):
         """

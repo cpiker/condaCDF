@@ -14,6 +14,7 @@ if [ ! -d ${PWD}/tmp ] ; then
 	mkdir ./tmp
 fi
 
+echo "cd ./tmp"
 cd ./tmp
 
 # Get sources if needed
@@ -50,20 +51,32 @@ fi
 
 
 # Copy in the pycdf and setup.py files
+echo "cd ${PATCH_DIR}"
 cd ${PATCH_DIR}
+
+echo "cp -r ../../pycdf ."
 cp -r ../../pycdf .
+
+echo "cp ../../setup.py ."
 cp ../../setup.py .
 
+echo "cd ../"
 cd ../
 
 # Make the patch in the recipe folder
+echo "cd ${PATCH_DIR}"
 cd ${PATCH_DIR}
+
+echo "diff -ruN ../${UNTAR_DIR} . > ../../recipe/0001_add_pycdf.patch.bad"
 diff -ruN ../${UNTAR_DIR} . > ../../recipe/0001_add_pycdf.patch.bad
 
+echo "cd ../../recipe"
 cd ../../recipe
 
 echo "cat 0001_add_pycdf.patch.bad | sed \"s/\.\/${UNTAR_DIR}//g\" > 0001_add_pycdf.patch"
 cat 0001_add_pycdf.patch.bad | sed "s/\.\/${UNTAR_DIR}//g" > 0001_add_pycdf.patch
 
+echo "rm 0001_add_pycdf.patch.bad"
+rm 0001_add_pycdf.patch.bad
 exit 0
 
