@@ -34,7 +34,7 @@ If this works, then test using Van Allen Probes data, for example:
 >>> f.keys()
 ```
 If this produces a list similar to the following...
-```python
+```
 KeysView(<CDF:
 APID: CDF_UINT2 [634]
 Epoch: CDF_TIME_TT2000 [634]
