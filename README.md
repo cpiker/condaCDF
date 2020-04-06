@@ -78,12 +78,12 @@ the sources to cut out some build commands and to add in the python wrapper supp
 by SpacePy.
 
 If you change the contents of the `./pycdf` subdirectory or the `setup.py` file then
-you will have to re-build the patch file.  To do this run the command:
+you will have to rebuild the patch file.  To rebuild the patch file, run the command:
 ```bash
 $ ./make_patch.sh
 ```
-It requires bash, diff, sed, and wget for proper operation.  This will update the 
-file `recipe/0001_add_pycdf.patch`.
+The script requires bash, diff, sed, and wget for proper operation.  This will update
+the file `recipe/0001_add_pycdf.patch`.
 
 Upload the build output to your favorite repository.  Below I'm using 
 [DasDevelopers](https://anaconda.org/DasDevelopers) site at 
@@ -91,10 +91,9 @@ Upload the build output to your favorite repository.  Below I'm using
 ```bash
 (base) $ anaconda upload -u dasdevelopers pycdf
 ```
-
-
-
-
-
-
-
+## Acknowledgements
+This repo is just a repackaging of other people's hard work.  Hats off to the crew
+that put together the initial CDF specification and libraries at GSFC.  The format
+they designed strikes a nice balance between generality and simplicity.  Also, to the 
+SpacePy project which produced **the** standard python CDF wrapper.  It's elegance
+is unmatched by any other CDF interface, in any language.
