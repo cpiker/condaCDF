@@ -60,7 +60,7 @@ First, activate your conda environment:
 $ source $HOME/minconda3/bin/activate  # For ex. varies by install location
 ```
 
-Install conda build, verify and the anaconda clients if needed
+Install the conda-build, conda-verify, and anaconda-client packages if needed
 ```bash
 (base) $ conda install conda-build
 (base) $ conda install conda-verify
@@ -71,7 +71,7 @@ In the working directory of this repo run the build command
 ```bash
 (base) $ conda-build ./recipe
 ```
-The build commands download the CDF software from the Goddard site and then patch
+The build command downloads the CDF software from the Goddard site and then patches
 the sources to cut out some build commands and to add in the python wrapper supplied
 by SpacePy.
 
@@ -80,7 +80,8 @@ you will have to re-build the patch file.  To do this run the command:
 ```bash
 $ ./make_patch.sh
 ```
-It requires bash, diff, sed, and wget for proper operation.
+It requires bash, diff, sed, and wget for proper operation.  This will update the 
+file `recipe/0001_add_pycdf.patch`.
 
 Upload the build output to your favorite repository.  Below I'm using 
 [DasDevelopers](https://anaconda.org/DasDevelopers) site at 
