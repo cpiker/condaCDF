@@ -11,13 +11,13 @@ create a standalone CDF reader for python.
 This is a low-level packagen on which more complicated items may be built.
 The only dependency other than the basic python interpreter is numpy >= 1.11.
 
-This project is a pathfinder.  The author hopes that the SpacePy or Goddard
-group will take over maintenance in time.
+This project is a pathfinder.  The author hopes that another group will take
+over maintenance in time.
 
 ## Anaconda Package
 [![Anaconda Package](https://anaconda.org/dasdevelopers/pycdf/badges/version.svg)](https://anaconda.org/DasDevelopers/pycdf)
 
-*As of today, only the Linux package has been build, MacOS and Windows packages will
+*As of today, only the Linux package has been built, MacOS and Windows packages will
 follow soon.*
 
 Pre-built versiions of pycdf are available from Anaconda.  To install the conda
@@ -52,8 +52,8 @@ timeOffsets: CDF_REAL8 [4096] NRV
 
 For more information on using pycdf, see the SpacePy [pycdf webpage](https://spacepy.github.io/pycdf.html).
 
-## Build
-These instructions are only for package manatainers. 
+## Package Maintenance
+These instructions are only for package manatainers, though anyone can be a package maintainer, so dive in :)
 
 First, activate your conda environment:
 ```bash
@@ -71,6 +71,16 @@ In the working directory of this repo run the build command
 ```bash
 (base) $ conda-build ./recipe
 ```
+The build commands download the CDF software from the Goddard site and then patch
+the sources to cut out some build commands and to add in the python wrapper supplied
+by SpacePy.
+
+If you change the contents of the `./pycdf` subdirectory or the `setup.py` file then
+you will have to re-build the patch file.  To do this run the command:
+```bash
+$ ./make_patch.sh
+```
+It requires bash, diff, sed, and wget for proper operation.
 
 Upload the build output to your favorite repository.  Below I'm using 
 [DasDevelopers](https://anaconda.org/DasDevelopers) site at 
