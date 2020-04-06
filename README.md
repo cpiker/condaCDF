@@ -8,11 +8,10 @@ project along with [Anaconda](https://anaconda.org) packaging for the
 Goddard Spaceflight Center's [CDF library](https://cdf.gsfc.nasa.gov/) to
 create a standalone CDF reader for python.  
 
-This is a low-level packagen on which more complicated items may be built.
-The only dependency other than the basic python interpreter is numpy >= 1.11.
-
-This project is a pathfinder.  The author hopes that another group will take
-over maintenance in time.
+There is no need to download and install separate CDF libraries!  These are
+include in the package.  The only dependency is numpy >= 1.11.  Also, the 
+binary CDF tools, such as `cdfstats` are not included.  Only the components
+of the CDF distribution used by pycdf are part of the package.
 
 ## Anaconda Package
 [![Anaconda Package](https://anaconda.org/dasdevelopers/pycdf/badges/version.svg)](https://anaconda.org/DasDevelopers/pycdf)
