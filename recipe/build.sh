@@ -9,7 +9,7 @@ if [ "${sUname}" = "Linux" ]; then
 	
 elif [ "${sUname}" = "Darwin" ]; then
 
-	make OS=linux ENV=gnu CURSES=no all
+	make OS=macosx ENV=gnu CURSES=no all
 	make install.lib.dylib INSTALLDIR=${PREFIX}
 	
 else
