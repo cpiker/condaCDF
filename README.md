@@ -77,11 +77,6 @@ Upload the build output to your favorite repository.  Below I'm using
 (base) $ anaconda upload -u dasdevelopers pycdf
 ```
 
-## Install
-
-This project is in development.  As soon as a working version is ready,
-installation instructions will be provided.  Since there is no new code
-development here, it shouldn't take long.
 
 
 
