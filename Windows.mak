@@ -18,7 +18,7 @@ BD=build.windows
 
 INC=/I $(ZHDR_DIR) /I $(LHDR_DIR)
 DEFINES=/DWIN32 /D_FILE_OFFSET_BITS=64 /D_LARGEFILE64_SOURCE \
-/D_LARGEFILE_SOURCE /DMALLOC_CHECK_=0 /DHAVE_STDARG_H
+/D_LARGEFILE_SOURCE /DMALLOC_CHECK_=0 /DHAVE_STDARG_H /DZ_PREFIX
 CFLAGS=$(CFLAGS) $(DEFINES) $(INC)
  
 ZIP_OBJS=$(BD)\adler32.obj $(BD)\crc32.obj $(BD)\deflate.obj $(BD)\inffast.obj \
@@ -61,7 +61,7 @@ $(BD)\$(TARG).dll:$(ALL_OBJS)
 
 # Inference rule for building zlib files
 {$(ZSRC_DIR)\}.c{$(BD)\}.obj:
-	$(CC) $(CFLAGS) /DZ_PREFIX /Fo:$@ /c $<
+	$(CC) $(CFLAGS) /Fo:$@ /c $<
 	
 # Inference rule for building cdf lib files
 {$(LSRC_DIR)\}.c{$(BD)\}.obj:
