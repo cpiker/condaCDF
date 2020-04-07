@@ -14,7 +14,7 @@ source:
    patches:
       - 0001_add_pycdf.patch
       - 0002_build_libonly.patch
-      - 0003_macos_libtool.patch
+      - 0003_macos_make.patch
    
 build:
    # This is the zeroth build
@@ -24,15 +24,17 @@ requirements:
    build:
       - {{ compiler('c') }}
       - python
-      - numpy
+      - numpy <=1.17.3   # Higer level version broken on MacOS!
       
    host:
       - python
-      - numpy
+      - numpy <=1.17.3   # Anaconda abandoned old Mac's, time
+                         # to return the favor and use pip
                   
    run:
       - python
-      - numpy
+      - numpy <=1.17.3   # The last version that doesn't require
+                         # AVX CPU features
       
 test:
    imports:

@@ -1,0 +1,104 @@
+diff -ruN cdf37_1-dist/Makefile patched/Makefile
+--- ./Makefile	2018-12-17 08:46:06.000000000 -0600
++++ ./Makefile	2020-04-06 20:58:00.000000000 -0500
+@@ -101,12 +101,6 @@
+ RANLIB=ranlib
+ 
+ WHICHOS=$(shell uname)
+-MACVERSION=0
+-MACLIB=
+-ifeq ("$(WHICHOS)","Darwin")
+-  MACVERSION=$(shell uname -r | cut -f1 -d.)
+-  MACLIB=$(shell echo $$HOME)/lib
+-endif
+ 
+ #------------------------------------------------------------------------------
+ # Macros for Solaris.
+@@ -260,10 +254,10 @@
+ 
+ CURSES_macosx_gnu=yes
+ CC_macosx_gnu=gcc
+-LD_macosx_gnu=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -macosx_version_min 10.6
++LD_macosx_gnu=libtool -macosx_version_min 10.6
+ LDOPTIONS_macosx_gnu=-dynamic
+ PIC_macosx_gnu=
+-COPTIONS_macosx_gnu=-m64 -D__MACH__ -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -O2
++COPTIONS_macosx_gnu=-mmacosx-version-min=10.6 -m64 -D__MACH__ -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -O2
+ COPTIONSZlib_macosx_gnu=-DHAVE_STDARG_H -DHAVE_UNISTD_H
+ COPTIONSld_macosx_gnu=
+ FOPTIONS_macosx_gnu=-w $(MACOSxFopt)
+@@ -898,7 +892,7 @@
+ 
+ install.lib.so: create.lib copy.lib.so
+ install.lib.sl: create.lib copy.lib.sl
+-install.lib.dylib: create.lib create.maclib copy.lib.dylib
++install.lib.dylib: create.lib copy.lib.dylib
+ install.lib.o: create.lib copy.lib.o
+ install.lib.dll: create.lib copy.lib.dll
+ 
+@@ -923,15 +917,6 @@
+ 	   $(NULL) ; \
+ 	 fi
+ 
+-create.maclib:
+-	@if [ $(MACVERSION) -gt 14 ] ; then \
+-	  if [ ! -d $(MACLIB) ] ; then \
+-	     $(MAKE) MAKE=$(MAKE) "TARGET=$(MACLIB)" create.dir ; \
+-	  else \
+-	     $(NULL) ; \
+-	  fi \
+-	fi
+-
+ create.help:
+ 	@if [ ! -d $(INSTALLDIR)/lib ] ; then \
+ 	   $(MAKE) MAKE=$(MAKE) "TARGET=$(INSTALLDIR)/lib" create.dir ; \
+@@ -1002,11 +987,6 @@
+ 	      cp $(LIBsrcDIR)/libcdf.dylib $(INSTALLDIR)/lib/libcdf.$(VERSION).dylib
+ 	      rm -f $(INSTALLDIR)/lib/libcdf.dylib
+ 	      cd $(INSTALLDIR)/lib && ln -s libcdf.$(VERSION).dylib libcdf.dylib
+-	@if [ $(MACVERSION) -gt 14 ] ; then \
+-	  cp $(LIBsrcDIR)/libcdf.dylib $(MACLIB)/libcdf.$(VERSION).dylib ; \
+-	  rm -f $(MACLIB)/libcdf.dylib ; \
+-	  cd $(MACLIB) && ln -s libcdf.$(VERSION).dylib libcdf.dylib ; \
+-	fi
+ 	
+ 
+ copy.lib.o:
+diff -ruN cdf37_1-dist/src/lib/Makefile patched/src/lib/Makefile
+--- ./src/lib/Makefile	2018-08-29 14:16:17.000000000 -0500
++++ ./src/lib/Makefile	2020-04-06 20:35:37.000000000 -0500
+@@ -91,12 +91,6 @@
+ CDFMD5h= $(CDFLIBh) $(INCLUDEcdf)/cdfmd5.h
+ 
+ WHICHOS=$(shell uname)
+-MACVERSION=0
+-MACLIB=
+-ifeq ("$(WHICHOS)","Darwin")
+-  MACVERSION=$(shell uname -r | cut -f1 -d.)
+-  MACLIB=$(shell echo $$HOME)/lib
+-endif
+ 
+ #------------------------------------------------------------------------------
+ # Compile/link.
+@@ -109,9 +103,6 @@
+ 	@echo $(AR) $(ARFLAGS) $@ $(OBJs)
+ 	      $(AR) $(ARFLAGS) $@ $(OBJs)
+ 	@$(MAKE) MAKE=$(MAKE) ranlib.$(RANLIB)
+-	@if [ $(MACVERSION) -gt 0 ]; then \
+-	  cp -f $@ $(MACLIB); \
+-	fi
+ 
+ ranlib.yes:
+ 	@echo $(RANLIBcmd) libcdf.a
+@@ -127,11 +118,6 @@
+ 	@if [ -f $@ ] ; then rm $@ ; else $(NULL) ; fi
+ 	@echo $(LD) $(LDFLAGS) -o $@ $(OBJs) $(SYSLIBS)
+ 	      $(LD) $(LDFLAGS) -o $@ $(OBJs) $(SYSLIBS)
+-	@if [ $(MACVERSION) -gt 0 ]; then \
+-	  rm -f $(MACLIB)/$@; \
+-	  cp $@ $(MACLIB)/libcdf.$(VERSION).dylib; \
+-	  cd $(MACLIB) && ln -s libcdf.$(VERSION).dylib $@; \
+-	fi
+ 
+ 
+ libcdf.o: $(OBJs)
