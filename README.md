@@ -16,8 +16,6 @@ of the CDF distribution used by pycdf are part of the package.
 ## Anaconda Package
 [![Anaconda Package](https://anaconda.org/dasdevelopers/pycdf/badges/version.svg)](https://anaconda.org/DasDevelopers/pycdf)
 
-*As of 2020-04-06 only Linux and MacOS packages are available.  The Windows package will be ready soon.*
-
 Pre-built versions of pycdf are available from Anaconda.  To install the conda
 package run the command:
 ```bash
