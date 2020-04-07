@@ -16,8 +16,7 @@ of the CDF distribution used by pycdf are part of the package.
 ## Anaconda Package
 [![Anaconda Package](https://anaconda.org/dasdevelopers/pycdf/badges/version.svg)](https://anaconda.org/DasDevelopers/pycdf)
 
-*As of today, only the Linux package has been built, MacOS and Windows packages will
-follow soon.*
+*As of 2020-04-06 only Linux and MacOS packages are available.  The Windows package will be ready soon.*
 
 Pre-built versiions of pycdf are available from Anaconda.  To install the conda
 package run the command:
@@ -50,9 +49,13 @@ timeOffsets: CDF_REAL8 [4096] NRV
 ... then it works.
 
 For more information on using pycdf, see the SpacePy [pycdf webpage](https://spacepy.github.io/pycdf.html).
+
 If this particular dataset is of interest, then see the Van Allen Probes
 [EMFISIS instrument](https://emfisis.physics.uiowa.edu/) data site.
 
+### NumPy Version Note
+Newer MacOS NumPy packages (> 1.17.3) require CPUs which support AVX features. 
+(see Issue [#9678](https://github.com/conda/conda/issues/9678). To keep this package usable by older Mac's the *maximum* NumPy version supported is 1.17.3.
 
 ## Package Maintenance
 These instructions are only for package manatainers, though anyone can be a package maintainer, so dive in :)
@@ -95,5 +98,5 @@ Upload the build output to your favorite repository.  Below I'm using
 This repo is just a repackaging of other people's hard work.  Hats off to the crew
 that put together the initial CDF specification and libraries at GSFC.  The format
 they designed strikes a nice balance between generality and simplicity.  Also, to the 
-SpacePy project which produced **the** standard python CDF wrapper.  It's elegance
-is unmatched by any other CDF interface, in any language.
+SpacePy project which produced the standard python CDF wrapper.  It's elegance
+is unmatched by any other CDF interface yet encountered.
