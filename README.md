@@ -74,6 +74,7 @@ Install the conda-build, conda-verify, and anaconda-client packages if needed
 (base) $ conda install conda-build
 (base) $ conda install conda-verify
 (base) $ conda install anaconda-client
+(base) $ conda install m2-patch         # Windows only
 ```
 
 In the working directory of this repo run the build command
