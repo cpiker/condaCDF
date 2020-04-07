@@ -1,6 +1,6 @@
 diff -ruN ./pycdf/const.py ./pycdf/const.py
 --- ./pycdf/const.py	1969-12-31 18:00:00.000000000 -0600
-+++ ./pycdf/const.py	2020-04-06 00:25:30.033939178 -0500
++++ ./pycdf/const.py	2020-04-07 03:57:52.740444207 -0500
 @@ -0,0 +1,490 @@
 +#!/usr/bin/env python
 +# -*- coding: utf-8 -*-
@@ -494,8 +494,8 @@ diff -ruN ./pycdf/const.py ./pycdf/const.py
 +NONE_CHECKSUM = NO_CHECKSUM
 diff -ruN ./pycdf/__init__.py ./pycdf/__init__.py
 --- ./pycdf/__init__.py	1969-12-31 18:00:00.000000000 -0600
-+++ ./pycdf/__init__.py	2020-04-06 00:25:30.033939178 -0500
-@@ -0,0 +1,5318 @@
++++ ./pycdf/__init__.py	2020-04-07 03:57:52.740444207 -0500
+@@ -0,0 +1,5326 @@
 +#!/usr/bin/env python
 +# -*- coding: utf-8 -*-
 +
@@ -1004,21 +1004,29 @@ diff -ruN ./pycdf/__init__.py ./pycdf/__init__.py
 +        
 +        # Defined during builds ...
 +        if 'PREFIX' in os.environ:
-+            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
-+                yield p
++            if sys.platform == 'win32':
++                for p in search_dir(os.path.join(os.environ['PREFIX'], 'Library', 'bin')):
++                    yield p
++            else:
++                for p in search_dir(os.path.join(os.environ['PREFIX'], 'lib')):
++                    yield p
 +        
 +        # defined when conda is activated ...
 +        if 'CONDA_PREFIX' in os.environ:
-+            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
-+                yield p
-+			
++            if sys.platform == 'win32':
++                for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'Library', 'bin')):
++                    yield p
++            else:
++                for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
++                    yield p
++        
 +        # Special subdirectory for anaconda unix packages on windows
-+        if 'LIBRARY_LIB' in os.environ:
-+            for p in search_dir(os.environ['LIBRARY_LIB']):
++        if 'LIBRARY_BIN' in os.environ:
++            for p in search_dir(os.environ['LIBRARY_BIN']):
 +                yield p
 +                
 +        ctypespath = ctypes.util.find_library(
-+            'dllcdf.dll' if sys.platform == 'win32' else 'cdf')
++            'cdf.dll' if sys.platform == 'win32' else 'cdf')
 +        if ctypespath:
 +            yield ctypespath
 +
@@ -5815,9 +5823,10 @@ diff -ruN ./pycdf/__init__.py ./pycdf/__init__.py
 +        self.new(new_name, master[name],
 +                 master.type(name) if hasattr(master, 'type') else None)
 Binary files ./pycdf/__pycache__/__init__.cpython-35.pyc and ./pycdf/__pycache__/__init__.cpython-35.pyc differ
+Binary files ./pycdf/__pycache__/__init__.cpython-37.pyc and ./pycdf/__pycache__/__init__.cpython-37.pyc differ
 diff -ruN ./setup.py ./setup.py
 --- ./setup.py	1969-12-31 18:00:00.000000000 -0600
-+++ ./setup.py	2020-04-06 00:25:30.033939178 -0500
++++ ./setup.py	2020-04-07 03:57:52.744444194 -0500
 @@ -0,0 +1,25 @@
 +#!/usr/bin/env python
 +

@@ -506,21 +506,29 @@ class Library(object):
         
         # Defined during builds ...
         if 'PREFIX' in os.environ:
-            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
-                yield p
+            if sys.platform == 'win32':
+                for p in search_dir(os.path.join(os.environ['PREFIX'], 'Library', 'bin')):
+                    yield p
+            else:
+                for p in search_dir(os.path.join(os.environ['PREFIX'], 'lib')):
+                    yield p
         
         # defined when conda is activated ...
         if 'CONDA_PREFIX' in os.environ:
-            for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
-                yield p
-			
+            if sys.platform == 'win32':
+                for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'Library', 'bin')):
+                    yield p
+            else:
+                for p in search_dir(os.path.join(os.environ['CONDA_PREFIX'], 'lib')):
+                    yield p
+        
         # Special subdirectory for anaconda unix packages on windows
-        if 'LIBRARY_LIB' in os.environ:
-            for p in search_dir(os.environ['LIBRARY_LIB']):
+        if 'LIBRARY_BIN' in os.environ:
+            for p in search_dir(os.environ['LIBRARY_BIN']):
                 yield p
                 
         ctypespath = ctypes.util.find_library(
-            'dllcdf.dll' if sys.platform == 'win32' else 'cdf')
+            'cdf.dll' if sys.platform == 'win32' else 'cdf')
         if ctypespath:
             yield ctypespath
 
