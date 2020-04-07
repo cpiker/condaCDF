@@ -55,7 +55,7 @@ If this particular dataset is of interest, then see the Van Allen Probes
 
 ### NumPy Version Note
 Newer MacOS NumPy packages (> 1.17.3) require CPUs which support AVX features. 
-(see Issue [#9678](https://github.com/conda/conda/issues/9678) ). To keep this
+(see Anaconda issue [#9678](https://github.com/conda/conda/issues/9678) ). To keep this
 package usable by older Mac's the *maximum* NumPy version supported is 1.17.3.
 
 ## Package Maintenance
