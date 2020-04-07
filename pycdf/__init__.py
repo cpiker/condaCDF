@@ -490,7 +490,7 @@ class Library(object):
             paths that look like the CDF library
         """
         #What the library might be named
-        names = { 'win32': ['dllcdf.dll'],
+        names = { 'win32': ['cdf.dll'],
                   'darwin': ['libcdf.dylib', 'cdf.dylib', 'libcdf.so'],
                   'linux2': ['libcdf.so'],
                   'linux': ['libcdf.so'],

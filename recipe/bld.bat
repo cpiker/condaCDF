@@ -12,3 +12,6 @@ nmake.exe /nologo /f Windows.mak install
 if %ERRORLEVEL% NEQ 0 (
 	EXIT /B 4
 )
+
+%PYTHON% setup.py install
+

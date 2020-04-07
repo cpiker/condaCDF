@@ -60,7 +60,7 @@ diff -ruN cdf37_1-dist/Windows.mak patched/Windows.mak
 +$(BD):
 +	if not exist "$(BD)" mkdir "$(BD)"
 +	
-+$(BD)\$(TARG).dll:$(ALL_OBJS)
++$(BD)\$(TARG).dll $(BD)\$(TARG).lib:$(ALL_OBJS)
 +	link /nologo /ltcg /dll $(ALL_OBJS) $(EX_LIBS) /out:$(BD)\$(TARG).dll /implib:$(BD)\$(TARG).lib
 +
 +# Inference rule for building zlib files
@@ -69,7 +69,7 @@ diff -ruN cdf37_1-dist/Windows.mak patched/Windows.mak
 +	
 +# Inference rule for building cdf lib files
 +{$(LSRC_DIR)\}.c{$(BD)\}.obj:
-+	$(CC) $(CFLAGS) /Fo:$@ /c $<
++	$(CC) /DBUILDINGforDLL $(CFLAGS) /Fo:$@ /c $<
 +	
 +install:
 +	if not exist $(LIBRARY_PREFIX)\bin mkdir $(LIBRARY_PREFIX)\bin
