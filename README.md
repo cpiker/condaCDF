@@ -54,9 +54,11 @@ If this particular dataset is of interest, then see the Van Allen Probes
 [EMFISIS instrument](https://emfisis.physics.uiowa.edu/) data site.
 
 ### NumPy Version Note
-Newer MacOS NumPy packages (> 1.17.3) require CPUs which support AVX features. 
-(see Anaconda issue [#9678](https://github.com/conda/conda/issues/9678) ). To keep this
-package usable by older Mac's the *maximum* NumPy version supported is 1.17.3.
+Newer MacOS NumPy packages (> 1.17.3) require CPUs which support
+[AVX](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) features
+(see Anaconda issue [#9678](https://github.com/conda/conda/issues/9678) ) and 
+thus they will not run on older (2011 era) Macs.  To keep this package usable
+by older Mac's the *maximum* NumPy version supported is 1.17.3.
 
 ## Package Maintenance
 These instructions are only for package manatainers, though anyone can be
