@@ -15,6 +15,7 @@ source:
       - 0001_add_pycdf.patch
       - 0002_build_libonly.patch
       - 0003_macos_make.patch
+      - 0004_nmake_file.patch
    
 build:
    # This is the zeroth build
