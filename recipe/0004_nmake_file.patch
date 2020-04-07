@@ -1,7 +1,7 @@
 diff -ruN cdf37_1-dist/Windows.mak patched/Windows.mak
 --- ./Windows.mak	1969-12-31 18:00:00.000000000 -0600
-+++ ./Windows.mak	2020-04-07 00:58:58.093343227 -0500
-@@ -0,0 +1,68 @@
++++ ./Windows.mak	2020-04-07 01:07:24.547465546 -0500
+@@ -0,0 +1,79 @@
 +# CDF Makefile for MS Visual C compiler
 +
 +# Definitions ################################################################
@@ -62,7 +62,6 @@ diff -ruN cdf37_1-dist/Windows.mak patched/Windows.mak
 +$(BD)\$(TARG).dll:$(ALL_OBJS)
 +	link /nologo /ltcg /dll $(ALL_OBJS) $(EX_LIBS) /out:$(BD)\$(TARG).dll /implib:$(BD)\$(TARG).lib
 +
-+
 +# Inference rule for building zlib files
 +{$(ZSRC_DIR)\}.c{$(BD)\}.obj:
 +	$(CC) $(CFLAGS) /Fo:$@ /c $<
@@ -70,3 +69,15 @@ diff -ruN cdf37_1-dist/Windows.mak patched/Windows.mak
 +# Inference rule for building cdf lib files
 +{$(LSRC_DIR)\}.c{$(BD)\}.obj:
 +	$(CC) $(CFLAGS) /Fo:$@ /c $<
++	
++install:
++	if not exist $(LIBRARY_PREFIX)\bin mkdir $(LIBRARY_PREFIX)\bin
++	if not exist $(LIBRARY_PREFIX)\lib mkdir $(LIBRARY_PREFIX)\lib
++	if not exist $(LIBRARY_PREFIX)\include\das2 mkdir $(LIBRARY_PREFIX)\include\das2
++	copy $(BD)\$(TARG).dll $(LIBRARY_PREFIX)\bin
++	copy $(BD)\$(TARG).lib $(LIBRARY_PREFIX)\lib
++	for %I in ( $(HDRS) ) do copy %I $(LIBRARY_PREFIX)\include
++
++clean:
++	if exist $(BD) rmdir /S /Q $(BD)
++
