@@ -6,7 +6,7 @@ diff -ruN cdf37_1-dist/src/lib/zlib/zconf.h patched/src/lib/zlib/zconf.h
  #ifndef Z_SOLO
  #  if defined(Z_HAVE_UNISTD_H) || defined(_LARGEFILE64_SOURCE)
 -#    include <unistd.h>         /* for SEEK_*, off_t, and _LFS64_LARGEFILE */
-+#    if defned(_WIN32)
++#    if defined(_WIN32)
 +#      include <io.h>
 +#    else
 +#      include <unistd.h>         /* for SEEK_*, off_t, and _LFS64_LARGEFILE */
