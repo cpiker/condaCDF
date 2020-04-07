@@ -16,7 +16,8 @@ source:
       - 0002_build_libonly.patch
       - 0003_macos_make.patch
       - 0004_nmake_file.patch
-   
+      - 0005_zlib_unistd.patch
+
 build:
    # This is the zeroth build
    number: 0
