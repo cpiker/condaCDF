@@ -101,5 +101,4 @@ Upload the build output to your favorite repository.  Below I'm using
 This repo is just a repackaging of other people's hard work.  Hats off to the crew
 that put together the initial CDF specification and libraries at GSFC.  The format
 they designed strikes a nice balance between generality and simplicity.  Also, to the 
-SpacePy project which produced the standard python CDF wrapper.  It's elegance
-is unmatched by any other CDF interface yet encountered.
+SpacePy project which produced an elegant python CDF wrapper.
