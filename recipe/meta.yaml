@@ -43,7 +43,7 @@ test:
       - pycdf
 
 about:
-   home: https://github.com/das-developers/condaCDF
+   home: https://github.com/cpiker/condaCDF
    license: Custom/Combined
    license_file: ../LICENSE
    summary: pycdf and libcdf.so as a stand alone package
